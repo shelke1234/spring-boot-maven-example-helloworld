@@ -1,6 +1,12 @@
-FROM node:latest
-WORKDIR /usr/src/app
-COPY package*.json ./
-RUN npm install
-EXPOSE 3000
-CMD [ "npm","start" ]
+FROM centos:7
+MAINTAINER dhananjay shelke
+LABEL version="1.0" location="India" type="centos-with-ssh" 
+RUN yum update -y;yum install openssh* -y;yum install vim -y;yum install initscripts -y;
+RUN service sshd restart
+EXPOSE 22
+VOLUME ["/data"]
+COPY . /data
+RUN chmod +x /data/red.sh
+WORKDIR /root
+USER root
+ENTRYPOINT //data/red.sh && /bin/bash 
