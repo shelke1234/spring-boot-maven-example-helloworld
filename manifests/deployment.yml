@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: shelkespringbootmavenexamplehelloworld 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shelkespringbootmavenexamplehelloworld
+  template:
+    metadata:
+      labels:
+        app: shelkespringbootmavenexamplehelloworld 
+    spec:
+      containers:
+        - name: shelkespringbootmavenexamplehelloworld 
+          image: dockeraz.azurecr.io/shelkespringbootmavenexamplehelloworld
+          ports:
+          - containerPort: 3000
